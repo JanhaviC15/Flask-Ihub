@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST" action="CheckIn">
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Attendance</legend>
+                    <label for="CheckIn">Check In Time:</label>
+                    <input type="text" id="date" value="" name="CheckIn"/>
+                    <input id="checktime" type="submit" value="Click Me!" onclick="document.getElementById('date').value = new Date().toLocaleTimeString(navigator.language, {hour: '2-digit', minute:'2-digit'})" />
+                    <script type="text/javascript" defer="defer">
+                        var enableDisable = function(){
+                            var UTC_hours = new Date().getUTCHours() +5.30;
+                            if (UTC_hours > 9 && UTC_hours < 15){
+                                document.getElementById('checktime').disabled = false;
+                            }
+                            else
+                            {
+                                document.getElementById('checktime').disabled = true;
+                            }
+                        };
+                        setInterval(enableDisable, 1000*60);
+                        enableDisable();
+                    </script>
+            </fieldset>
+                <div class="border-top pt-3">
+                    <small class="text-muted">
+                       Want to check your attendance status?<a class="ml-2" href="{{ url_for('attendance_status') }}">Check your status</a>
+                    </small>
+                </div>
+        </form>
+    </div>
+{% endblock %}

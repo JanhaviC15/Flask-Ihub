@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="content-section">
+        <form method="POST" action="#">
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Attendance</legend>
+                <form>
+                  <button formaction="{{ url_for('CheckInRoute') }}">Check In</button>
+                </form>
+                <p></p>
+                 <form>
+                  <button formaction="{{ url_for('CheckOutRoute') }}">Check Out</button>
+                </form>
+            </fieldset>
+                <div class="border-top pt-3">
+                    <small class="text-muted">
+                       Want to check your attendance status?<a class="ml-2" href="{{ url_for('attendance_status') }}">Check your status</a>
+                    </small>
+                </div>
+        </form>
+    </div>
+{% endblock content %}
